@@ -1,0 +1,96 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "
+http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../jquery-easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../jquery-easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+	<script type="text/javascript" src="../jquery-easyui/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../jquery-easyui/jquery.easyui.min.js"></script>
+   	<script type="text/javascript" src="../jslibs/log4js.js"></script>
+	<script type="text/javascript" src="../js/ActivityToolSystem.js"></script>
+	<script type="text/javascript" src="../js/Constants.js"></script>
+   	<script type="text/javascript" src="../js/Message.js"></script>
+    <script type="text/javascript" src="../js/Util.js"></script>
+   	<script type="text/javascript" src="../js/LoggerWrapper.js"></script>
+	<script type="text/javascript" src="../js/DBUtil.js"></script>
+	<script type="text/javascript" src="../js/People.js"></script>
+   	<script type="text/javascript" src="../js/Rechange.js"></script>
+   	<script type="text/javascript" src="../js/peopleList.js"></script>
+</head>
+<body>
+	<div style="width:700px;">
+    	<div class="easyui-panel" title="检索部" iconCls="icon-search"
+         collapsible="true" collapsed="true" style="height:80px;padding:10px;">
+            <input id="txtCondition" />
+            <a href="#" class="easyui-linkbutton" onClick="btnSearch_click();">查询</a>
+		</div>
+        <br />
+		<div id="peopleList">
+        </div>
+	
+        <div id="createPeople" class="easyui-window" style="top:30px; padding:20px; background: #fafafa;" align="center">
+            <form id='createForm'>
+                <table style="width:100%;">
+                    <colgroup align="right"></colgroup>
+                    <colgroup align="left"></colgroup>
+                    <tr>
+                        <td class="formItemNameArea">编  号</td>
+                        <td class="formItemValueArea">
+							<input class="easyui-numberbox" type="text" id="vali_id" min="1" max="60000"
+							precision="0" required="true"></input>
+						 </td>
+                    </tr>
+                    <tr>
+                        <td class="formItemNameArea">姓  名</td>
+                        <td class="formItemValueArea">
+							<input class="easyui-validatebox" type="text" id="vali_name" required="true"></input>
+						 </td>
+                    </tr>
+                    <tr>
+                        <td class="formItemNameArea">性  别</td>
+                        <td class="formItemValueArea">
+                            <input type="radio" id="sex" name="sex" value="0" checked /><span>女</span>
+                            <input type="radio" id="sex" name="sex" value="1" /><span>男</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="formItemNameArea">Email</td>
+                        <td class="formItemValueArea">
+							<input class="easyui-validatebox" type="text" id="vali_email"
+							required="true" validType="email"></input>
+						</td>
+                    </tr>
+                    <tr>
+                        <td class="formItemNameArea">账户余额</td>
+                        <td class="formItemValueArea">
+							<input type="text" id="balance" disabled="true"></input>
+						</td>
+                    </tr>
+                    <tr>
+                        <td class="formItemNameArea">默认参加一切活动</td>
+                        <td class="formItemValueArea">
+                            <input type="radio" id="join" name="join" value="1" checked /><span>是</span>
+                            <input type="radio" id="join" name="join" value="0" /><span>否</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="formItemNameArea">默认接收一切邮件</td>
+                        <td class="formItemValueArea">
+                            <input type="radio" id="recivemail" name="recivemail" value="1"
+                             checked /><span>是</span>
+                            <input type="radio" id="recivemail" name="recivemail" value="0" /><span>否</span>
+                        </td>
+                    </tr>
+                </table>
+            </form>	
+            <div style="height:30px;line-height:30px;padding-top:10px;">
+                <a class="easyui-linkbutton" iconCls="icon-ok" href="javascript:void(0)"
+                 onClick="savePeople();">保存</a>
+                <a class="easyui-linkbutton" iconCls="icon-cancel" href="javascript:void(0)"
+                 onClick="$('#createPeople').window('close');">取消</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

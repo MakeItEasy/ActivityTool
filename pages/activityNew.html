@@ -1,0 +1,228 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "
+http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../jquery-easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../jquery-easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+	<script type="text/javascript" src="../jquery-easyui/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../jquery-easyui/jquery.easyui.min.js"></script>
+   	<script type="text/javascript" src="../jslibs/log4js.js"></script>
+	<script type="text/javascript" src="../js/ActivityToolSystem.js"></script>
+	<script type="text/javascript" src="../js/Constants.js"></script>
+   	<script type="text/javascript" src="../js/Message.js"></script>
+    <script type="text/javascript" src="../js/Util.js"></script>
+   	<script type="text/javascript" src="../js/LoggerWrapper.js"></script>
+	<script type="text/javascript" src="../js/DBUtil.js"></script>
+   	<script type="text/javascript" src="../js/Activity.js"></script>
+  	<script type="text/javascript" src="../js/People.js"></script>
+    <script type="text/javascript" src="../js/QueryPeopleWindow.js"></script>
+    <script type="text/javascript" src="../js/MailMessage.js"></script>
+    <script type="text/javascript" src="../js/MailTemplate.js"></script>
+    <script type="text/javascript" src="../js/MailSender.js"></script>
+    <script type="text/javascript" src="../js/MailHandler.js"></script>
+    <script type="text/javascript" src="../js/SendMailForm.js"></script>
+    <script type="text/javascript" src="../js/ActivityCalculator.js"></script>
+   	<script type="text/javascript" src="../js/activityNew.js"></script>
+
+    <!-- 本页面特有样式 -->
+	<style type="text/css">
+
+	</style>
+    
+</head>
+<body>
+	<div>
+       	<!-- 活动信息页面 -->
+    	<div id="activityInfo" style="padding:0px;">
+        	<!-- 工具栏部分 -->
+            <div id="toolbar" class='datagrid-toolbar'>
+                <table cellpadding="0" cellspacing="0" style="width:100%">
+                    <tr>
+                        <td class="table-btn-separator">
+                            <a href="#" id="btnSave" class="easyui-linkbutton" iconCls="icon-save" plain="true"
+                             onClick="toolbar_saveActivity_click();">保存</a>
+                            <a href="#" id="btnInfo" class="easyui-linkbutton" iconCls="icon-info" plain="true">概要</a>
+                            <a href="#" id="btnUndo" class="easyui-linkbutton" iconCls="icon-undo" plain="true"
+                             onClick="toolbar_goBack_click();">返回</a>
+                        </td>
+                        <td class="table-btn-separator">
+                            <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true"
+                             onClick="toolbar_appendPeople_click();">添加人员</a>
+                            <a href="#" id="btnRemove" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+                             onClick="toolbar_removePeople_click();">移除人员</a>
+                        </td>
+                        <td style="	float:left;">
+                            <a href="#" id="btnWelcome" class="easyui-linkbutton" iconCls="icon-sendmail" plain="true"
+                             onClick="toolbar_welcome_click();">邀请</a>
+                            <a href="#" id="btnMakesure" class="easyui-linkbutton" iconCls="icon-makesure" plain="true"
+                             onClick="toolbar_makesure_click();">确认</a>
+                            <a href="#" id="btnPay" class="easyui-linkbutton" iconCls="icon-coins" plain="true"
+                             onClick="toolbar_pay_click();">结算</a>
+                            <a href="#" id="btnCancel" class="easyui-linkbutton" iconCls="icon-sad" plain="true"
+                             onClick="toolbar_cancel_click();">取消</a>
+                        </td>
+                        <td style="text-align:right">
+                            <input></input>
+                            <a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="true"></a>
+                        </td>
+                    </tr>
+                </table>
+	        </div>
+
+			<!-- 活动信息部分 -->
+			<div style="padding:10px;">
+				<!-- 活动基本信息部分 -->
+                <div id="activityBaseInfo" style="padding:10px;	height: auto;">
+                    <div>
+                        <table id="tblActivityBaseInfo" style="width:100%;">
+                        	<colgroup style="width:10%;"></colgroup>
+                            <colgroup style="width:50%;"></colgroup>
+                            <colgroup style="width:10%;"></colgroup>
+                            <colgroup style="width:30%;"></colgroup>
+                            <tr>
+                                <td>活动名称：</td>
+                                <td>
+                                	<input id="activity_id" type="hidden" value="">
+                                	<input id="activity_name" size="30" disabled>
+                                    <input id="activity_status" type="hidden" value="1">
+                                    <a name="activity_status_view" href="#" class="easyui-linkbutton"
+                                     iconCls="icon-notVisited" style="margin-left:10px;">未邀请</a>
+                                    <a name="activity_status_view" href="#" class="easyui-linkbutton"
+                                     iconCls="icon-sendmail" style="margin-left:10px;">已邀请</a>
+                                    <a name="activity_status_view" href="#" class="easyui-linkbutton"
+                                     iconCls="icon-makesure" style="margin-left:10px;">已确认</a>
+                                    <a name="activity_status_view" href="#" class="easyui-linkbutton"
+                                     iconCls="icon-coins" style="margin-left:10px;">已结算</a>
+                                    <a name="activity_status_view" href="#" class="easyui-linkbutton"
+                                     iconCls="icon-sad" style="margin-left:10px;">已取消</a>
+                                </td>
+                                <td>活动费用：</td>
+                                <td>
+                                	<input id="activity_cost" class="easyui-numberbox" type="text"
+                                     min="1" max="60000" precision="1"></input>
+                                </td>
+                            </tr>
+                            <tr>
+	                            <td>活动日期：</td>
+                                <td><input id="activity_date" type="text"></input></td>
+                                <td>活动种类：</td>
+                                <td>
+                                	<select id="activity_kind" name="activity_kind">
+                                    </select>
+								</td>
+                            </tr>
+                            <tr>
+                                <td>活动备注：</td>
+                                <td  colspan="3"><input id="activity_memo" size="95" maxlength="80"></td>
+                            </tr>
+                            <tr class="activityAppendInfo">
+                                <td>场地数量：</td>
+                                <td  colspan="3">
+                                	<input id="activity_info1" class="easyui-numberbox" type="text"
+                                     min="1" max="100" precision="0" size="95">
+                                     <input id="activity_info2" type="hidden" value="">
+                                     <input id="activity_info3" type="hidden" value="">
+                                     <input id="activity_info4" type="hidden" value="">
+                                     <input id="activity_info5" type="hidden" value="">
+                                </td>
+                            </tr>
+                            
+                            <!-- 活动附加属性部分 -->
+                            
+                        </table>
+					</div>
+                </div>
+                <br />
+				<!-- 参加活动人员信息部分 -->
+                <div id="peopleList">
+                </div>
+                
+                <!-- 活动概要信息部分 -->
+                
+                
+                
+                <!-- 查询人员窗体 -->
+                <div id="queryPeople" class="easyui-window" style="padding:0px;left:30px;top:30px;">
+                    <!-- 工具栏部分 -->
+                    <div id="toolbar" class='datagrid-toolbar'>
+                        <table cellpadding="0" cellspacing="0" style="width:100%">
+                            <tr>
+		                        <td class="table-btn-separator">
+                                    <a href="#" id="queryPeople_ok" class="easyui-linkbutton" iconCls="icon-save" plain="true">确定</a>
+                                    <a href="#" id="queryPeople_cancel" class="easyui-linkbutton" iconCls="icon-undo" plain="true">取消</a>
+                                </td>
+                                <td style="text-align:right">
+                                    <input id="queryPeople_condition"></input>
+                                    <a href="#" id="queryPeople_search" class="easyui-linkbutton" iconCls="icon-search" plain="true"></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- 查询结果Datagrid部分 -->
+                    <div id="queryPeopleResultList">
+                    </div>
+                </div>
+                
+                
+                 <!-- 发送邮件窗体 -->
+                <div id="sendMail" class="easyui-window" style="padding:0px;left:30px;top:30px;">
+                    <!-- 工具栏部分 -->
+                    <div id="sendMail_toolbar" class='datagrid-toolbar'>
+                        <table cellpadding="0" cellspacing="0" style="width:100%">
+                            <tr>
+		                        <td class="table-btn-separator">
+                                    <a href="#" id="sendMail_send" class="easyui-linkbutton" iconCls="icon-save"
+                                     plain="true">发送</a>
+                                    <a href="#" id="sendMail_cancel" class="easyui-linkbutton" iconCls="icon-undo"
+                                     plain="true">取消</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- 邮件信息部分 -->
+                    <div id="sendMail_info" style="padding:15px 30px 15px 15px;">
+                    	<form id='mailForm'>
+                            <table style="width:100%;">
+                                <colgroup width="8%"></colgroup>
+                                <colgroup width="92%"></colgroup>
+                                <tr>
+                                    <td class="formItemNameArea">收件人</td>
+                                    <td class="formItemValueArea">
+                                        <textarea class="easyui-validatebox" id="sendMail_to"
+                                         style="width:100%;height:35px;" required="true"></textarea>
+                                     </td>
+                                </tr>
+                                <tr>
+                                    <td class="formItemNameArea">CC</td>
+                                    <td class="formItemValueArea">
+                                        <input class="easyui-validatebox" id="sendMail_cc"
+                                         style="width:100%;"></input>
+                                     </td>
+                                </tr>
+                                <tr>
+                                    <td class="formItemNameArea">主题</td>
+                                    <td class="formItemValueArea">
+                                        <input class="easyui-validatebox" type="text" id="sendMail_title"
+                                         style="width:100%;" required="true"></input>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="formItemNameArea" style="vertical-align:text-top;">内容</td>
+                                    <td class="formItemValueArea">
+										<textarea class="easyui-validatebox" id="sendMail_content"
+                                         style="width:100%;height:200px;" required="true"></textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>	
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "
+http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Activity Tool</title>
+	<link rel="stylesheet" type="text/css" href="jquery-easyui/themes/default/easyui.css">
+	<script type="text/javascript" src="jquery-easyui/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="jquery-easyui/jquery.easyui.min.js"></script>
+   	<script type="text/javascript" src="js/ActivityToolSystem.js"></script>
+   	<script type="text/javascript" src="js/ActivityTool.js"></script>
+	<style type="text/css">
+		ul{ list-style:none; padding:0; margin:0}
+		a {
+			color: black;
+			text-decoration: none;
+		}
+		.nav-main li a{ display:block; height:25px; background:url(images/icon.gif) no-repeat right -50px;}
+		.nav-main li a:hover{ background:url(images/icon.gif) no-repeat right -75px; text-decoration:none;}
+		.nav-main li span{ display:block; height:25px; line-height:25px;border:1px solid #e9dee2; padding-left:40px;}
+		.nav-main .data-search{ height:25px; background:url(images/icon.gif) no-repeat left bottom;}
+
+		/*人员管理菜单部*/
+		.nav-main #p-a{ background:url(images/icon.gif) no-repeat 10px -105px;}
+		.nav-main #p-b{ background:url(images/icon.gif) no-repeat 10px -130px;}
+
+		/*活动管理菜单部*/
+		.nav-main #a-a{ background:url(images/icon.gif) no-repeat 10px -155px;}
+		.nav-main #a-b{ background:url(images/icon.gif) no-repeat 10px -180px;}
+
+	</style>
+</head>
+<body class="easyui-layout">
+	<div region="north" border="true" style="height:40px;background:#B3DFDA;">
+	<h4>
+	Activity Tool Ver1.0
+	</h4>
+	</div>
+	<div region="west" split="true" title="菜单" style="width:150px;padding1:1px;overflow:hidden;">
+		<div class="easyui-accordion" fit="true" border="false">
+			<div title="人员管理" selected="false" style="overflow:auto;">
+				<ul class="nav-main">
+				  <li><a href="#"><span id="p-a" class="submenu">人员一览</span></a></li>
+				  <li><a href="#"><span id="p-b" class="submenu">快速充值</span></a></li>
+				</ul>
+			</div>
+            <div title="活动管理" selected="true" style="overflow:auto;">
+				<ul class="nav-main">
+				  <li><a href="#"><span id="a-a" class="submenu">活动一览</span></a></li>
+				  <li><a href="#"><span id="a-b" class="submenu">新建活动</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div region="south" border="true" style="height:20px;background:#A9FACD;padding:0px;text-align:center;">
+	copyright by dairugang 2011
+	</div>
+	<div region="center" title="主工作区" style="scrolling:auto;">
+        <iframe id="mainArea" style="height: 99%; width:100%; frameborder:0;scrolling:auto;" src="pages/activityList.html" APPLICATION="yes">
+        </iframe>
+	</div>
+</body>
+</html>
