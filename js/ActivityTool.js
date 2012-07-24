@@ -1,17 +1,22 @@
+/* ActivityTool.js */
 define(function(require, exports, module) {
 	var $ = require('../jquery-easyui/jquery.js');
+	// var jquery = require('../jquery-easyui/jquery.js');
 	
 	require('../jquery-easyui/jquery-easyui.js')($);
 	
 	//////////////////////////////////////////////////////////
 	///               初始化加载部分                         ///
 	//////////////////////////////////////////////////////////
+	alert("hello");
 
 	$(function(){
 		// 所有的子菜单添加单击事件
+	alert(".submenu click");	
 		$('.submenu').click(menu_click); 
 	});
 	
+	alert("hello end");
 	//////////////////////////////////////////////////////////
 	///               页面事件处理部分                       ///
 	//////////////////////////////////////////////////////////
