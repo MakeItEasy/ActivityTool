@@ -11,7 +11,7 @@ define(function(require, exports, module) {
 
 	// Log4js包装对象
 	var LoggerOption = {
-		useLog4js : true,
+		useLog4js : false,
 		logFilePath : 'e:\\01_moyan\\00_moyan_SugarSync\\05_MyProject\\ActivityTool_hta\\03_source\\logs\\ActivityTool.log',
 		logLevel : Log4js.Level.ALL,
 		pattern : "[%d][%c][%p] - %m"

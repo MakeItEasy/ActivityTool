@@ -3,6 +3,7 @@ define(function(require, exports, module) {
 	var LoggerWrapper = require('./LoggerWrapper.js');
 	var Constants = require('./Constants.js');
 	var DBUtil = require('./DBUtil.js');
+	var Util = require('./Util.js');
 
 	//////////////////////////////////////////////////////////
 	///               构造函数部分                           ///
@@ -194,6 +195,8 @@ define(function(require, exports, module) {
 			if(this.activity_id == null || this.activity_id == '') {
 				this.activity_id = Activity.getNextActivityId();
 			}
+			
+
 			LoggerWrapper.debug("[Activity.prototype.insert] The next ActivityId is : " + this.activity_id);
 			LoggerWrapper.debug("[Activity.prototype.insert] The Insert Sqls : " + Util.arrToString(this.getInsertSqls()));
 			DBUtil.executeSqls(this.getInsertSqls());
@@ -416,7 +419,7 @@ define(function(require, exports, module) {
 		str += "activity_info3 : " + this.activity_info3 + ", ";
 		str += "activity_info4 : " + this.activity_info4 + ", ";
 		str += "activity_info5 : " + this.activity_info5;	
-		str += " ]\n";
+		str += " ]\r\n";
 		str += "MemberInfo(peopleId) [";
 		for(var i=0; i<this.activity_members.length; i++) {
 			str += this.activity_members[i].id + ",";

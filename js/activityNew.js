@@ -209,6 +209,16 @@ define(function(require, exports, module) {
 			}
 		});
 		
+		// 绑定页面事件
+		$('#btnSave').click(toolbar_saveActivity_click);
+		$('#btnUndo').click(toolbar_goBack_click);
+		$('#btnAdd').click(toolbar_appendPeople_click);
+		$('#btnRemove').click(toolbar_removePeople_click);
+		$('#btnWelcome').click(toolbar_welcome_click);
+		$('#btnMakesure').click(toolbar_makesure_click);
+		$('#btnPay').click(toolbar_pay_click);
+		$('#btnCancel').click(toolbar_cancel_click);		
+		
 		queryPeopleWindow = new QueryPeopleWindow({afterSelectProcess : afterSelectProcess});	
 		sendMailForm = new SendMailForm();
 		
@@ -282,6 +292,7 @@ define(function(require, exports, module) {
 		var queryObj = new Activity();
 		// 按活动名称查询
 		queryObj.activity_name = act.activity_name;
+
 		var results = queryObj.queryByPageInfo();
 		// 定义保存处理的函数	
 		var saveFunction = function(activity) {
@@ -350,7 +361,7 @@ define(function(require, exports, module) {
 		}
 		
 		LoggerWrapper.debug("[toolbar_appendPeople_click] peoples.length : " + peoples.length);
-		LoggerWrapper.debug("[toolbar_appendPeople_click] peoples.length : " + Util.objToString(peoples));
+		LoggerWrapper.debug("[toolbar_appendPeople_click] peoples.tostring : " + Util.objToString(peoples));
 		
 		queryPeopleWindow.openWindow(ids);
 	}

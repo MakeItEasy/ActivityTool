@@ -73,7 +73,7 @@ define(function(require, exports, module) {
 		var str = '{';
 		if(arr) {
 			for(var i=0; i<arr.length; i++) {
-				str += arr[i] + "\n";
+				str += arr[i] + "\r\n";
 			}
 		}
 		str += "}";
