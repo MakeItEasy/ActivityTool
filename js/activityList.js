@@ -6,6 +6,10 @@ define(function(require, exports, module) {
 	var $ = require('../jquery-easyui/jquery.js');
 	require('../jquery-easyui/jquery-easyui.js')($);
 	var ActivityToolSystem = require('./ActivityToolSystem.js');
+	var Constants = require('./Constants.js');
+	var Message = require('./Message.js');
+	var Util = require('./Util.js');
+	var Activity = require('./Activity.js');
 	
 	ActivityToolSystem.init();
 	
@@ -109,6 +113,12 @@ define(function(require, exports, module) {
 		
 		// 初始化时候加载数据
 		$('#activityList').datagrid("loadData", getPageData(Constants.initPageInfo));
+		
+		// 绑定页面的各个事件
+		$('#btnAdd').click(btnAdd_click);
+		$('#btnEdit').click(btnEdit_click);
+		$('#btnCopy').click(btnCopy_click);
+		
 	});
 
 
