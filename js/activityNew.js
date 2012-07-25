@@ -459,7 +459,7 @@ define(function(require, exports, module) {
 				act.activity_status = 4;
 				// 计算结果保存
 				act.updatePayInfo();
-				
+
 				// 提示保存成功信息
 				ActivityToolSystem.Handler.HandleSuccessShow({title : Message.T_C_00_000_0005, msg : Message.I_A_00_000_0010});
 				

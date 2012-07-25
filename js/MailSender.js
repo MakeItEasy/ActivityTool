@@ -2,7 +2,7 @@
 define(function(require, exports, module) {
 		
 	// 用CMail服务器
-
+	/*
 	var MailSender = {
 		send : sendMail,
 		option : {
@@ -13,10 +13,10 @@ define(function(require, exports, module) {
 			from : 'admin@moyan-pc.com'
 		}
 	};
-
+	*/
 
 	// 用公司邮箱
-	/*
+	
 	var MailSender = {
 		send : sendMail,
 		option : {
@@ -27,7 +27,7 @@ define(function(require, exports, module) {
 			from : 'dairugang@use.com.cn'
 		}
 	};
-	*/
+	
 
 
 	// 发送邮件方法

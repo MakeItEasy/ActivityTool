@@ -4,6 +4,7 @@ define(function(require, exports, module) {
 	var Constants = require('./Constants.js');
 	var DBUtil = require('./DBUtil.js');
 	var Util = require('./Util.js');
+	var People = require('./People.js');
 
 	//////////////////////////////////////////////////////////
 	///               构造函数部分                           ///
