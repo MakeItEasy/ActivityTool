@@ -2,7 +2,7 @@ define(function(require, exports, module) {
 
 	var LoggerWrapper = require('./LoggerWrapper.js');
 	var $ = require('../jquery-easyui/jquery.js');
-	require('../jquery-easyui/jquery-easyui.js')($);
+	require('../jquery-easyui/jquery-easyui.js');
 	var Constants = require('./Constants.js');
 	var Message = require('./Message.js');
 

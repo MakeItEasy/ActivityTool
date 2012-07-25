@@ -3,7 +3,7 @@ define(function(require, exports, module) {
 	require('../jquery-easyui/themes/icon.css');
 	
 	var $ = require('../jquery-easyui/jquery.js');
-	require('../jquery-easyui/jquery-easyui.js')($);
+	require('../jquery-easyui/jquery-easyui.js');
 	var ActivityToolSystem = require('./ActivityToolSystem.js');
 	var Constants = require('./Constants.js');
 	var Message = require('./Message.js');
