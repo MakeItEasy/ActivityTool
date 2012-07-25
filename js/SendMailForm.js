@@ -1,7 +1,7 @@
 define(function(require, exports, module) {
 
 	var $ = require('../jquery-easyui/jquery.js');
-	require('../jquery-easyui/jquery-easyui.js')($);
+	require('../jquery-easyui/jquery-easyui.js');
 	var Util = require('./Util.js');
 	var MailHandler = require('./MailHandler.js').MailHandler;
 
