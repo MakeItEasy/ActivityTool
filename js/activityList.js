@@ -2,7 +2,6 @@ define(function(require, exports, module) {
 
 	require('../jquery-easyui/themes/icon.css');
 	
-	var LoggerWrapper = require('./LoggerWrapper.js');
 	var $ = require('../jquery-easyui/jquery.js');
 	require('../jquery-easyui/jquery-easyui.js')($);
 	var ActivityToolSystem = require('./ActivityToolSystem.js');

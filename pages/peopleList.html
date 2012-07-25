@@ -4,15 +4,13 @@ http://www.w3.org/TR/html4/loose.dtd">
 <head>
 	<link rel="stylesheet" type="text/css" href="../css/common.css">
 	<script src="../jslibs/sea.js" data-main="../js/peopleList.js"></script>
-
-   	<script type="text/javascript" src="../js/Rechange.js"></script>
 </head>
 <body>
 	<div style="width:700px;">
     	<div class="easyui-panel" title="检索部" iconCls="icon-search"
          collapsible="true" collapsed="true" style="height:80px;padding:10px;">
             <input id="txtCondition" />
-            <a href="#" class="easyui-linkbutton" onClick="btnSearch_click();">查询</a>
+            <a id="btnSearch" href="#" class="easyui-linkbutton">查询</a>
 		</div>
         <br />
 		<div id="peopleList">
@@ -74,10 +72,8 @@ http://www.w3.org/TR/html4/loose.dtd">
                 </table>
             </form>	
             <div style="height:30px;line-height:30px;padding-top:10px;">
-                <a class="easyui-linkbutton" iconCls="icon-ok" href="javascript:void(0)"
-                 onClick="savePeople();">保存</a>
-                <a class="easyui-linkbutton" iconCls="icon-cancel" href="javascript:void(0)"
-                 onClick="$('#createPeople').window('close');">取消</a>
+                <a id="btnSavePeople" class="easyui-linkbutton" iconCls="icon-ok" href="javascript:void(0)">保存</a>
+                <a id="btnCancleSavePeople" class="easyui-linkbutton" iconCls="icon-cancel" href="javascript:void(0)">取消</a>
             </div>
         </div>
     </div>

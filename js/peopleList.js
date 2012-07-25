@@ -9,7 +9,9 @@ define(function(require, exports, module) {
 	var Constants = require('./Constants.js');
 	var Message = require('./Message.js');
 	var Util = require('./Util.js');
+	var DBUtil = require('./DBUtil.js');
 	var People = require('./People.js');
+	var Rechange = require('./Rechange.js');
 	
 	ActivityToolSystem.init();
 
@@ -131,6 +133,14 @@ define(function(require, exports, module) {
 			resizable : false,
 			closed: true
 		});
+		
+		// 绑定画面的事件
+		$('#btnSavePeople').click(savePeople);
+		$('#btnSearch').click(btnSearch_click);
+		$('#btnCancleSavePeople').click(function(){
+			$('#createPeople').window('close');
+		});
+		
 	});
 
 
