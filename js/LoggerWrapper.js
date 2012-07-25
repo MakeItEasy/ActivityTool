@@ -1,68 +1,83 @@
-// Log4js包装对象
-var LoggerOption = {
-	useLog4js : false,
-	logFilePath : 'e:\\01_moyan\\00_moyan_SugarSync\\05_MyProject\\ActivityTool_hta\\03_source\\logs\\ActivityTool.log',
-	logLevel : Log4js.Level.ALL,
-	pattern : "[%d][%c][%p] - %m"
-};
+define(function(require, exports, module) {
 
-var LoggerWrapper = {
-	logger : getFileLogger(),
-	debug : debug,
-	info : info,
-	warn : warn,
-	error : error,
-	fatal : fatal
-};
+	var Log4js = require('../jslibs/log4js.js');
+	
+	// 对外接口
+	exports.debug = debug;
+	exports.info = info;
+	exports.warn = warn;
+	exports.error = error;
+	exports.fatal = fatal;
 
-// 得到控制台Logger对象
-function getWindowLogger() {
-	var windowLogger = new Log4js.getLogger("ActivityTool"); 
-	windowLogger.setLevel(LoggerOption.logLevel);
-	var oLayout = new Log4js.PatternLayout(LoggerOption.pattern);
-	var oAppender = new Log4js.ConsoleAppender(false);
-	oAppender.setLayout(oLayout);
-	windowLogger.addAppender(oAppender); 
-	return windowLogger;
-}
+	// Log4js包装对象
+	var LoggerOption = {
+		useLog4js : false,
+		logFilePath : 'e:\\01_moyan\\00_moyan_SugarSync\\05_MyProject\\ActivityTool_hta\\03_source\\logs\\ActivityTool.log',
+		logLevel : Log4js.Level.ALL,
+		pattern : "[%d][%c][%p] - %m"
+	};
 
-// 得到文件Logger对象
-function getFileLogger() {
-	var fileLogger = new Log4js.getLogger('ActivityTool');
-	fileLogger.setLevel(LoggerOption.logLevel);
-	var oLayout = new Log4js.PatternLayout(LoggerOption.pattern);
-	var oAppender = new Log4js.FileAppender(LoggerOption.logFilePath);
-	oAppender.setLayout(oLayout);
-	fileLogger.addAppender(oAppender);
-	return fileLogger;
-}
+	var LoggerWrapper = {
+		logger : getFileLogger()
+		/* delete enable
+		debug : debug,
+		info : info,
+		warn : warn,
+		error : error,
+		fatal : fatal
+		*/
+	};
 
-function debug(message) {
-	if(LoggerOption.useLog4js) {
-		LoggerWrapper.logger.debug(message);
+	// 得到控制台Logger对象
+	function getWindowLogger() {
+		var windowLogger = new Log4js.getLogger("ActivityTool"); 
+		windowLogger.setLevel(LoggerOption.logLevel);
+		var oLayout = new Log4js.PatternLayout(LoggerOption.pattern);
+		var oAppender = new Log4js.ConsoleAppender(false);
+		oAppender.setLayout(oLayout);
+		windowLogger.addAppender(oAppender); 
+		return windowLogger;
 	}
-}
 
-function info(message) {
-	if(LoggerOption.useLog4js) {
-		LoggerWrapper.logger.info(message);
+	// 得到文件Logger对象
+	function getFileLogger() {
+		var fileLogger = new Log4js.getLogger('ActivityTool');
+		fileLogger.setLevel(LoggerOption.logLevel);
+		var oLayout = new Log4js.PatternLayout(LoggerOption.pattern);
+		var oAppender = new Log4js.FileAppender(LoggerOption.logFilePath);
+		oAppender.setLayout(oLayout);
+		fileLogger.addAppender(oAppender);
+		return fileLogger;
 	}
-}
 
-function warn(message) {
-	if(LoggerOption.useLog4js) {
-		LoggerWrapper.logger.warn(message);
+	function debug(message) {
+		if(LoggerOption.useLog4js) {
+			LoggerWrapper.logger.debug(message);
+		}
 	}
-}
 
-function error(message) {
-	if(LoggerOption.useLog4js) {
-		LoggerWrapper.logger.error(message);
+	function info(message) {
+		if(LoggerOption.useLog4js) {
+			LoggerWrapper.logger.info(message);
+		}
 	}
-}
 
-function fatal(message) {
-	if(LoggerOption.useLog4js) {
-		LoggerWrapper.logger.fatal(message);
+	function warn(message) {
+		if(LoggerOption.useLog4js) {
+			LoggerWrapper.logger.warn(message);
+		}
 	}
-}
+
+	function error(message) {
+		if(LoggerOption.useLog4js) {
+			LoggerWrapper.logger.error(message);
+		}
+	}
+
+	function fatal(message) {
+		if(LoggerOption.useLog4js) {
+			LoggerWrapper.logger.fatal(message);
+		}
+	}
+
+});
