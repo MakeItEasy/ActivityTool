@@ -23,6 +23,10 @@ define(function(require, exports, module) {
 				// 人员一览
 				strSrc = 'pages/peopleList.html';
 				break;
+			case 'p-b':
+				// 快速充值
+				strSrc = 'pages/quicklyPay.html';
+				break;
 			case 'a-a':
 				// 活动一览
 				strSrc = 'pages/activityList.html';
