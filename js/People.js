@@ -224,14 +224,29 @@ define(function(require, exports, module) {
 	// 插入方法
 	People.prototype.insert = function()
 	{
-		try
+		var queryResult = People.queryById(this.id);
+		if(queryResult != null)
 		{
-			DBUtil.executeSql(this.getInsertSql());	
-		}
-		catch (ex)
+			if(queryResult.deleteflag == Constants.deleteFlag.notDeleted)
+			{
+				throw new Error(Constants.errorNumber.defaultNumber, 'E_P_00_000_0008');
+			}
+			else
+			{
+				throw new Error(Constants.errorNumber.defaultNumber, 'E_P_00_000_0009');
+			}
+		}	
+		else
 		{
-			LoggerWrapper.error(ex);
-			throw new Error(Constants.errorNumber.defaultNumber, 'E_P_00_000_0001');
+			try
+			{
+				DBUtil.executeSql(this.getInsertSql());	
+			}
+			catch (ex)
+			{
+				LoggerWrapper.error(ex);
+				throw new Error(Constants.errorNumber.defaultNumber, 'E_P_00_000_0001');
+			}
 		}
 	}
 
@@ -354,6 +369,45 @@ define(function(require, exports, module) {
 		}
 
 		return count;
+	}
+	
+	/** 根据ID取得查询结果
+	  * param	: id, int, people id
+	  * return	: when exist : People Object
+	  * 		  when not exist : null
+	  */
+	People.queryById = function(id)
+	{
+		var results = [];
+		var person = null;
+		var strConditionSql = "";
+		
+		if(id != null) {
+			strConditionSql = " WHERE people_id = '" + id + "'";
+		} else {
+			LoggerWrapper.error("Param Error");
+			return null;
+		}		
+		
+		try
+		{
+			results = DBUtil.query( People.FIELDS,
+									People.TABLENAME,
+									strConditionSql,
+									' ORDER BY PEOPLE_ID ASC',
+									People.FIELDSALIAS);
+			if(results != null && results.length > 0)
+			{
+				person = results[0];
+			}
+		}
+		catch (ex)
+		{
+			LoggerWrapper.error(ex);
+			throw new Error(Constants.errorNumber.defaultNumber, 'E_P_00_000_0006');
+		}
+
+		return person;
 	}
 
 	// toString方法
