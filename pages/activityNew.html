@@ -2,28 +2,9 @@
 http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="../jquery-easyui/themes/default/easyui.css">
-	<link rel="stylesheet" type="text/css" href="../jquery-easyui/themes/icon.css">
 	<link rel="stylesheet" type="text/css" href="../css/common.css">
-	<script type="text/javascript" src="../jquery-easyui/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../jquery-easyui/jquery.easyui.min.js"></script>
-   	<script type="text/javascript" src="../jslibs/log4js.js"></script>
-	<script type="text/javascript" src="../js/ActivityToolSystem.js"></script>
-	<script type="text/javascript" src="../js/Constants.js"></script>
-   	<script type="text/javascript" src="../js/Message.js"></script>
-    <script type="text/javascript" src="../js/Util.js"></script>
-   	<script type="text/javascript" src="../js/LoggerWrapper.js"></script>
-	<script type="text/javascript" src="../js/DBUtil.js"></script>
-   	<script type="text/javascript" src="../js/Activity.js"></script>
-  	<script type="text/javascript" src="../js/People.js"></script>
-    <script type="text/javascript" src="../js/QueryPeopleWindow.js"></script>
-    <script type="text/javascript" src="../js/MailMessage.js"></script>
-    <script type="text/javascript" src="../js/MailTemplate.js"></script>
-    <script type="text/javascript" src="../js/MailSender.js"></script>
-    <script type="text/javascript" src="../js/MailHandler.js"></script>
-    <script type="text/javascript" src="../js/SendMailForm.js"></script>
-    <script type="text/javascript" src="../js/ActivityCalculator.js"></script>
-   	<script type="text/javascript" src="../js/activityNew.js"></script>
+
+	<script src="../jslibs/sea.js" data-main="../js/activityNew.js"></script>
 
     <!-- 本页面特有样式 -->
 	<style type="text/css">
@@ -40,27 +21,19 @@ http://www.w3.org/TR/html4/loose.dtd">
                 <table cellpadding="0" cellspacing="0" style="width:100%">
                     <tr>
                         <td class="table-btn-separator">
-                            <a href="#" id="btnSave" class="easyui-linkbutton" iconCls="icon-save" plain="true"
-                             onClick="toolbar_saveActivity_click();">保存</a>
+                            <a href="#" id="btnSave" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a>
                             <a href="#" id="btnInfo" class="easyui-linkbutton" iconCls="icon-info" plain="true">概要</a>
-                            <a href="#" id="btnUndo" class="easyui-linkbutton" iconCls="icon-undo" plain="true"
-                             onClick="toolbar_goBack_click();">返回</a>
+                            <a href="#" id="btnUndo" class="easyui-linkbutton" iconCls="icon-undo" plain="true">返回</a>
                         </td>
                         <td class="table-btn-separator">
-                            <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true"
-                             onClick="toolbar_appendPeople_click();">添加人员</a>
-                            <a href="#" id="btnRemove" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
-                             onClick="toolbar_removePeople_click();">移除人员</a>
+                            <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加人员</a>
+                            <a href="#" id="btnRemove" class="easyui-linkbutton" iconCls="icon-remove" plain="true">移除人员</a>
                         </td>
                         <td style="	float:left;">
-                            <a href="#" id="btnWelcome" class="easyui-linkbutton" iconCls="icon-sendmail" plain="true"
-                             onClick="toolbar_welcome_click();">邀请</a>
-                            <a href="#" id="btnMakesure" class="easyui-linkbutton" iconCls="icon-makesure" plain="true"
-                             onClick="toolbar_makesure_click();">确认</a>
-                            <a href="#" id="btnPay" class="easyui-linkbutton" iconCls="icon-coins" plain="true"
-                             onClick="toolbar_pay_click();">结算</a>
-                            <a href="#" id="btnCancel" class="easyui-linkbutton" iconCls="icon-sad" plain="true"
-                             onClick="toolbar_cancel_click();">取消</a>
+                            <a href="#" id="btnWelcome" class="easyui-linkbutton" iconCls="icon-sendmail" plain="true">邀请</a>
+                            <a href="#" id="btnMakesure" class="easyui-linkbutton" iconCls="icon-makesure" plain="true">确认</a>
+                            <a href="#" id="btnPay" class="easyui-linkbutton" iconCls="icon-coins" plain="true">结算</a>
+                            <a href="#" id="btnCancel" class="easyui-linkbutton" iconCls="icon-sad" plain="true">取消</a>
                         </td>
                         <td style="text-align:right">
                             <input></input>
