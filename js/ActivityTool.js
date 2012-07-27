@@ -40,6 +40,10 @@ define(function(require, exports, module) {
 				window.parent.ActivitySystem.publicParam.updateActivityId = null;
 				strSrc = 'pages/activityNew.html';
 				break;
+			case 'm-a':
+				// 余额不足通知
+				strSrc = 'pages/mailBalanceRemind.html';
+				break;
 		}
 		$('#mainArea').attr('src', strSrc);
 	}

@@ -106,6 +106,21 @@ define(function(require, exports, module) {
 	MailTemplate.CancelTemplate.content += "请周知！";
 
 	MailTemplate.CancelTemplate.footer  = footer1;
+	
+	//////////////////////////////////////////////////////////
+	///               余额不足提醒通知模板部分             ///
+	//////////////////////////////////////////////////////////
+	MailTemplate.BalanceRemindTemplate = new MailMessage();
+
+	MailTemplate.BalanceRemindTemplate.title = "【充值提醒】%N";
+
+	MailTemplate.BalanceRemindTemplate.header = "亲爱的%N同学：" + Constants.enterKey;
+	MailTemplate.BalanceRemindTemplate.header += "您好！" + Constants.enterKey + Constants.enterKey;
+
+	MailTemplate.BalanceRemindTemplate.content  = "您当前的账户余额为：%J 元。" + Constants.enterKey;
+	MailTemplate.BalanceRemindTemplate.content  += "希望您百忙之中能够及时充值。谢谢配合！";
+	
+	MailTemplate.BalanceRemindTemplate.footer  = footer1;
 
 	return MailTemplate;
 });
