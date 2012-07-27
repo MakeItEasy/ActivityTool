@@ -329,7 +329,7 @@ define(function(require, exports, module) {
 
 	/** 根据页面信息，查询对应页面的结果
 	  * pageInfo ： 当前页面信息
-	  × return : 结果数组
+	  * return : 结果数组
 	  */
 	People.prototype.queryByPageInfo = function(pageInfo)
 	{
