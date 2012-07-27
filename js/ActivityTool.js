@@ -27,6 +27,10 @@ define(function(require, exports, module) {
 				// 快速充值
 				strSrc = 'pages/quicklyPay.html';
 				break;
+			case 'p-c':
+				// 人员恢复
+				strSrc = 'pages/peopleRestore.html';
+				break;
 			case 'a-a':
 				// 活动一览
 				strSrc = 'pages/activityList.html';
