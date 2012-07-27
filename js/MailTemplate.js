@@ -117,7 +117,7 @@ define(function(require, exports, module) {
 	MailTemplate.BalanceRemindTemplate.header = "亲爱的%N同学：" + Constants.enterKey;
 	MailTemplate.BalanceRemindTemplate.header += "您好！" + Constants.enterKey + Constants.enterKey;
 
-	MailTemplate.BalanceRemindTemplate.content  = "您当前的账户余额为：%B 元。" + Constants.enterKey;
+	MailTemplate.BalanceRemindTemplate.content  = "您当前的账户余额为：%J 元。" + Constants.enterKey;
 	MailTemplate.BalanceRemindTemplate.content  += "希望您百忙之中能够及时充值。谢谢配合！" + Constants.enterKey;
 	
 	MailTemplate.BalanceRemindTemplate.footer  = footer1;
