@@ -37,6 +37,17 @@ define(function(require, exports, module) {
 			}
 		}
 	}
+	
+	// 邮件处理函数，只负责发送，返回发送结果(true:成功 false:失败)
+	MailHandler.prototype.sendMail = function() {
+		var isMailable = this.getMailable();
+		var msg = this.getMessage();
+		var ret = true;
+		if(isMailable && msg) {
+			ret = MailSender.send(msg);
+		}
+		return ret;
+	}
 
 	// 得到Message对象方法
 	// 要被其他具体的handler重写
@@ -239,11 +250,40 @@ define(function(require, exports, module) {
 		}
 		return msg;
 	}
+	
+	//////////////////////////////////////////////////////////
+	///         余额不足提醒通知邮件处理类部分             ///
+	//////////////////////////////////////////////////////////
+
+	// 邀请函邮件处理类
+	function BalanceRemindMailHandler(people) {
+		this.people = people;
+		this.isMailable = true;
+		this.message = BalanceRemindMailHandler.getDefaultMessage(people);
+		this.params = null;
+	}
+
+	BalanceRemindMailHandler.prototype = new MailHandler();
+
+	// 得到默认Message对象
+	BalanceRemindMailHandler.getDefaultMessage = function(people) {
+		var msg = MailTemplate.BalanceRemindTemplate.clone();
+		if(people) {
+			msg.title = msg.title.replace("%N", people.name);
+			msg.header = msg.header.replace("%N", people.name);
+			msg.content = msg.content.replace("%J", people.balance);
+
+			msg.to = [];
+			msg.to.push(people.email);
+		}
+		return msg;
+	}
 
 	exports.MailHandler = MailHandler;
 	exports.WelcomeMailHandler = WelcomeMailHandler;
 	exports.MakesureMailHandler = MakesureMailHandler;
 	exports.CancelMailHandler = CancelMailHandler;
 	exports.PayMailHandler = PayMailHandler;
+	exports.BalanceRemindMailHandler = BalanceRemindMailHandler;
 
 });
