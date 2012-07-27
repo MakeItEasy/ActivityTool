@@ -1,0 +1,40 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "
+http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+	<script src="../jslibs/sea.js" data-main="../js/quicklyPay.js"></script>
+</head>
+<body>
+	<div style="width:700px;">
+        <!--
+        <div id="createPeople" class="easyui-window" style="top:30px; padding:20px; background: #fafafa; width: 340px;" align="left">
+        -->
+        <div class="easyui-panel" title="快速充值" iconCls="icon-money" collapsible="false" collapsed="false" style="height:200px;padding:10px;">
+            <form id='quicklyPayForm'>
+                <table style="width:100%;">
+                    <colgroup align="right"></colgroup>
+                    <colgroup align="left"></colgroup>
+                    <tr>
+                        <td class="formItemNameArea">人员编号</td>
+                        <td class="formItemValueArea">
+							<input class="easyui-numberbox" type="text" id="people_id" min="1" max="60000"
+							precision="0" required="true"></input>
+						 </td>
+                    </tr>
+                    <tr>
+                        <td class="formItemNameArea">充值金额</td>
+                        <td class="formItemValueArea">
+							<input class="easyui-numberbox" type="text" id="money" min="1" max="10000"
+							precision="1" required="true"></input>
+						</td>
+                    </tr>
+                </table>
+            </form>	
+            <div style="height:30px;line-height:30px;padding-top:10px; padding-left:200px;" align="left">
+                <a id="btnQuicklyPay" class="easyui-linkbutton" iconCls="icon-money" href="javascript:void(0)">快速充值</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
