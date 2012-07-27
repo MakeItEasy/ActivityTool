@@ -414,6 +414,7 @@ define(function(require, exports, module) {
 			}
 			var pageInfo = {currentPage: p.pagination('options').pageNumber,
 							pageSize: p.pagination('options').pageSize};
+			$('#peopleList').datagrid('clearSelections');
 			// 加载指定页面数据				
 			$('#peopleList').datagrid("loadData", getPageData(pageInfo, getQueryObject()));
 			// 清除所有的选择

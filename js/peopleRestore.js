@@ -1,5 +1,4 @@
 define(function(require, exports, module) {
-
 	require('../jquery-easyui/themes/icon.css');
 	
 	var LoggerWrapper = require('./LoggerWrapper.js');
@@ -176,7 +175,6 @@ define(function(require, exports, module) {
 
 	// 恢复处理
 	function restoreProcess(selections) {
-		alert('selections.length = ' + selections.length);
 		if(selections && selections.length > 0) {
 			// 取得所有选择ID的集合
 			var ids = [];
@@ -191,7 +189,7 @@ define(function(require, exports, module) {
 					var strDelete = 'UPDATE t_people SET delete_flag = 0 WHERE people_id IN (' + ids.join(',') + ')';
 					try
 					{
-						// 执行删除语句
+						// 执行恢复语句
 						DBUtil.executeSql(strDelete);
 						// 恢复成功处理
 						ActivityToolSystem.Handler.HandleSuccessShow({title : Message.T_C_00_000_0005,
@@ -264,6 +262,7 @@ define(function(require, exports, module) {
 			}
 			var pageInfo = {currentPage: p.pagination('options').pageNumber,
 							pageSize: p.pagination('options').pageSize};
+			$('#peopleList').datagrid('clearSelections');
 			// 加载指定页面数据				
 			$('#peopleList').datagrid("loadData", getPageData(pageInfo, getQueryObject()));
 			// 清除所有的选择
