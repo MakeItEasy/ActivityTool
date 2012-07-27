@@ -8,8 +8,8 @@ define(function(require, exports, module) {
 	var Constants = require('./Constants.js');
 	var Message = require('./Message.js');
 	var Util = require('./Util.js');
-	var DBUtil = require('./DBUtil.js');
 	var People = require('./People.js');
+	var MailHandler = require('./MailHandler.js');
 	
 	ActivityToolSystem.init();
 
@@ -80,10 +80,10 @@ define(function(require, exports, module) {
 			pagination:true,
 			rownumbers:true,
 			toolbar:[{
-				id:'btnRestore',
-				text:'恢复',
+				id:'btnRemind',
+				text:'邮件通知',
 				iconCls:'icon-edit',
-				handler:btnRestore_click
+				handler:btnRemind_click
 			}]
 		});
 
@@ -124,9 +124,9 @@ define(function(require, exports, module) {
 	}
 
 	// 恢复button按下处理
-	function btnRestore_click(){
+	function btnRemind_click(){
 		var f = restoreProcess;
-		var noSelectionStr = Message.W_C_00_000_0001.replace('{0}', '恢复');
+		var noSelectionStr = Message.W_C_00_000_0001.replace('{0}', '通知');
 		processSelections(f, 2, noSelectionStr);
 	}
 
@@ -142,14 +142,8 @@ define(function(require, exports, module) {
 		if(strQuery != '') {
 			// 检索条件的构造
 			p = new People(strQuery, strQuery);
-			// 查询已经删除的记录
-			p.deleteflag = Constants.deleteFlag.deleted;
 			p.queryOption.andOr = Constants.sql.or;
 			p.queryOption.equalOrLike = Constants.sql.like;
-		} else {
-			p = new People();
-			// 查询已经删除的记录
-			p.deleteflag = Constants.deleteFlag.deleted;
 		}
 		return p;
 	}
@@ -163,9 +157,9 @@ define(function(require, exports, module) {
 			p = new People();
 		}
 		// 取得总记录数
-		var count = p.getCount();
+		var count = p.getBalanceRemindCount();
 		// 取得指定页的数据
-		var results = p.queryByPageInfo(pageInfo);
+		var results = p.queryBalanceRemindByPageInfo(pageInfo);
 		var dataList = {                                                      
 			"total" : count,
 			"rows" : results
@@ -173,36 +167,49 @@ define(function(require, exports, module) {
 		return dataList;
 	}
 
-	// 恢复处理
+	// 邮件通知处理
 	function restoreProcess(selections) {
 		if(selections && selections.length > 0) {
 			// 取得所有选择ID的集合
-			var ids = [];
+			var names = [];
 			for(var i=0; i<selections.length; i++){
-				ids.push(selections[i].id);
+				names.push(selections[i].name);
 			}
-			var str = Message.I_C_00_000_0004;
+			var str = Message.I_C_00_000_0005;
 			str += '<br />';
-			str += ids.join(' : ');
+			str += names.join(' : ');
 			var f = function(r) {
+				var tempMailHandler = null;
+				var successPeopleInfo = [];
+				var failPeopleInfo = [];
+				var strMsg = '';
 				if(r) {
-					var strDelete = 'UPDATE t_people SET delete_flag = 0 WHERE people_id IN (' + ids.join(',') + ')';
-					try
-					{
-						// 执行恢复语句
-						DBUtil.executeSql(strDelete);
-						// 恢复成功处理
-						ActivityToolSystem.Handler.HandleSuccessShow({title : Message.T_C_00_000_0005,
-							msg : Message.I_C_00_000_0002.replace('{0}', ids.join(' : ')).replace('{1}', '恢复')
-						});
-						// 画面刷新处理
-						refreshData();
+					// 发送通知处理
+					for(var j=0; j<selections.length; j++){
+						tempMailHandler = new MailHandler.BalanceRemindMailHandler(selections[j]);
+						if(tempMailHandler.sendMail()) {
+							successPeopleInfo.push(selections[j].name);
+						} else {
+							failPeopleInfo.push(selections[j].name);
+						}
 					}
-					catch (ex)
-					{
-						LoggerWrapper.error(ex);
-						throw new Error(Constants.errorNumber.defaultNumber, 'E_P_00_000_0011');
+					if(successPeopleInfo.length > 0) {
+						strMsg += Message.I_C_00_000_0006;
+						strMsg += '<br />';
+						strMsg += successPeopleInfo.join(' : ');
+						strMsg += '<br />';
+						strMsg += '<br />';
 					}
+					if(failPeopleInfo.length > 0) {
+						strMsg += Message.I_C_00_000_0007;
+						strMsg += '<br />';
+						strMsg += failPeopleInfo.join(' : ');
+					}
+					
+					// 通知结果显示
+					ActivityToolSystem.Handler.HandleSuccessShow({title : Message.T_C_00_000_0005, msg : strMsg});
+					// 画面刷新处理
+					refreshData();
 				}
 			}
 
