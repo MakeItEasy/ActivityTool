@@ -218,7 +218,6 @@ define(function(require, exports, module) {
 			var strItemTemp = "";
 			// 余额清单
 			var strRechangeList = "";
-			
 			var arrIds = [];
 			for(var i=0; i<act.activity_members.length; i++) {
 				arrIds.push(act.activity_members[i].id);

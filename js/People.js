@@ -327,7 +327,6 @@ define(function(require, exports, module) {
 		return person;
 	}
 
-
 	/** 根据页面信息，查询对应页面的结果
 	  * pageInfo ： 当前页面信息
 	  * return : 结果数组
