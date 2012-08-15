@@ -23,6 +23,14 @@ define(function(require, exports, module) {
 				// 人员一览
 				strSrc = 'pages/peopleList.html';
 				break;
+			case 'p-b':
+				// 快速充值
+				strSrc = 'pages/quicklyPay.html';
+				break;
+			case 'p-c':
+				// 人员恢复
+				strSrc = 'pages/peopleRestore.html';
+				break;
 			case 'a-a':
 				// 活动一览
 				strSrc = 'pages/activityList.html';
@@ -31,6 +39,10 @@ define(function(require, exports, module) {
 				// 新建活动
 				window.parent.ActivitySystem.publicParam.updateActivityId = null;
 				strSrc = 'pages/activityNew.html';
+				break;
+			case 'm-a':
+				// 余额不足通知
+				strSrc = 'pages/mailBalanceRemind.html';
 				break;
 		}
 		$('#mainArea').attr('src', strSrc);

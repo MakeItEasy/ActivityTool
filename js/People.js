@@ -31,6 +31,7 @@ define(function(require, exports, module) {
 	People.TABLENAME = "t_people";
 	People.FIELDS = ['people_id', 'people_name', 'people_sex', 'people_email', 'account_balance', 'default_join', 'default_recivemail', 'delete_flag'];
 	People.FIELDSALIAS = ['id', 'name', 'sex', 'email', 'balance', 'join', 'recivemail', 'deleteflag'];
+	People.BALANCE_REMIND_CONDITION_SQL = "account_balance < " + Constants.balanceWaring.limitValue;
 
 
 	//////////////////////////////////////////////////////////
@@ -224,14 +225,29 @@ define(function(require, exports, module) {
 	// 插入方法
 	People.prototype.insert = function()
 	{
-		try
+		var queryResult = People.queryById(this.id);
+		if(queryResult != null)
 		{
-			DBUtil.executeSql(this.getInsertSql());	
-		}
-		catch (ex)
+			if(queryResult.deleteflag == Constants.deleteFlag.notDeleted)
+			{
+				throw new Error(Constants.errorNumber.defaultNumber, 'E_P_00_000_0008');
+			}
+			else
+			{
+				throw new Error(Constants.errorNumber.defaultNumber, 'E_P_00_000_0009');
+			}
+		}	
+		else
 		{
-			LoggerWrapper.error(ex);
-			throw new Error(Constants.errorNumber.defaultNumber, 'E_P_00_000_0001');
+			try
+			{
+				DBUtil.executeSql(this.getInsertSql());	
+			}
+			catch (ex)
+			{
+				LoggerWrapper.error(ex);
+				throw new Error(Constants.errorNumber.defaultNumber, 'E_P_00_000_0001');
+			}
 		}
 	}
 
@@ -311,10 +327,9 @@ define(function(require, exports, module) {
 		return person;
 	}
 
-
 	/** 根据页面信息，查询对应页面的结果
 	  * pageInfo ： 当前页面信息
-	  × return : 结果数组
+	  * return : 结果数组
 	  */
 	People.prototype.queryByPageInfo = function(pageInfo)
 	{
@@ -355,7 +370,92 @@ define(function(require, exports, module) {
 
 		return count;
 	}
+	
+	/** 根据页面信息，查询对应页面的余额不足账户信息
+	  * pageInfo ： 当前页面信息
+	  * return : 结果数组
+	  */
+	People.prototype.queryBalanceRemindByPageInfo = function(pageInfo)
+	{
+		var results = [];
+		try
+		{
+			results = DBUtil.query( People.FIELDS,
+									People.TABLENAME,
+									this.getQueryConditionSql() + " AND (" + People.BALANCE_REMIND_CONDITION_SQL  + ")",
+									' ORDER BY PEOPLE_ID ASC',
+									People.FIELDSALIAS,
+									pageInfo);
+		}
+		catch (ex)
+		{
+			LoggerWrapper.error(ex);
+			throw new Error(Constants.errorNumber.defaultNumber, 'E_P_00_000_0006');
+		}
 
+		return results;
+	}
+
+	/** 取得余额不足账户信息的查询结果数量
+	  *
+	  */
+	People.prototype.getBalanceRemindCount = function()
+	{
+		var count = 0;
+		try
+		{
+			count = DBUtil.queryCount(People.TABLENAME,	
+									  this.getQueryConditionSql() + " AND (" + People.BALANCE_REMIND_CONDITION_SQL  + ")");
+		}
+		catch (ex)
+		{
+			LoggerWrapper.error(ex);
+			throw new Error(Constants.errorNumber.defaultNumber, 'E_P_00_000_0007');
+		}
+
+		return count;
+	}
+	
+	
+	/** 根据ID取得查询结果
+	  * param	: id, int, people id
+	  * return	: when exist : People Object
+	  * 		  when not exist : null
+	  */
+	People.queryById = function(id)
+	{
+		var results = [];
+		var person = null;
+		var strConditionSql = "";
+		
+		if(id != null) {
+			strConditionSql = " WHERE people_id = '" + id + "'";
+		} else {
+			LoggerWrapper.error("Param Error");
+			return null;
+		}		
+		
+		try
+		{
+			results = DBUtil.query( People.FIELDS,
+									People.TABLENAME,
+									strConditionSql,
+									' ORDER BY PEOPLE_ID ASC',
+									People.FIELDSALIAS);
+			if(results != null && results.length > 0)
+			{
+				person = results[0];
+			}
+		}
+		catch (ex)
+		{
+			LoggerWrapper.error(ex);
+			throw new Error(Constants.errorNumber.defaultNumber, 'E_P_00_000_0006');
+		}
+
+		return person;
+	}
+	
 	// toString方法
 	People.prototype.toString = function()
 	{
