@@ -7,7 +7,6 @@ http://www.w3.org/TR/html4/loose.dtd">
 	<!-- 因为在jquery-easyui.js 中require了easyui.css,所以这里就注释掉了
 	<link rel="stylesheet" type="text/css" href="jquery-easyui/themes/default/easyui.css">
 	-->
-	<script src="./jslibs/sea.js" data-main="./js/ActivityTool.js"></script>
    	
 	<style type="text/css">
 		ul{ list-style:none; padding:0; margin:0}
@@ -69,6 +68,9 @@ http://www.w3.org/TR/html4/loose.dtd">
         <iframe id="mainArea" style="height: 99%; width:100%; frameborder:0;scrolling:auto;" src="pages/activityList.html" APPLICATION="yes">
         </iframe>
 	</div>
-
+	
+	<!-- 如果把这句代码放到上面，那么对于HTML文件直接打开没有问题，但是对于hta文件，直接打开以后布局不对，需要重新F5刷新一下或几下才管用-->
+	<script src="./jslibs/sea.js" data-main="./js/ActivityTool.js"></script>
+	
 </body>
 </html>

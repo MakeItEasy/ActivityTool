@@ -1,0 +1,10 @@
+﻿
+<HTA:APPLICATION ID="oMyApp" 
+    APPLICATIONNAME="monster" 
+    BORDER="yes"
+    CAPTION="yes"
+    ICON="yes"
+    SHOWINTASKBAR="yes"
+    SINGLEINSTANCE="yes"
+    SYSMENU="yes"
+    WINDOWSTATE="maximize">
