@@ -98,6 +98,14 @@ define(function(require, exports, module) {
 			}
 			return format;
 		}
+
+		/**
+		  * 得到日期的星期表示字符串，比如“星期一”等
+		  */
+		Date.prototype.getWeekdayString = function(){
+			var result = Constants.weekday[this.getDay()];
+			return result;
+		}
 	}
 
 
