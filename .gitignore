@@ -1,4 +1,5 @@
 logs/
+database/
 
 test.html
 *.log
