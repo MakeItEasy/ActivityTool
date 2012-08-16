@@ -84,7 +84,7 @@ define(function(require, exports, module) {
 	// 活动相关的各项参数
 	Constants.activity = {
 		// 默认时间
-		defaultActivityTime : '17:30:00',
+		defaultActivityTime : '18:00:00',
 		// 活动名称格式
 		namePattern : '[%d]%n活动',
 		// 默认显示场地数量
@@ -101,6 +101,16 @@ define(function(require, exports, module) {
 		},
 		nameMark : '#'
 	};
+
+	// 星期的表示方式，以后想修改表达方式就修改这里
+	Constants.weekday = new Array(7);
+	Constants.weekday[0]="星期日";
+	Constants.weekday[1]="星期一";
+	Constants.weekday[2]="星期二";
+	Constants.weekday[3]="星期三";
+	Constants.weekday[4]="星期四";
+	Constants.weekday[5]="星期五";
+	Constants.weekday[6]="星期六";
 
 	return Constants;
 

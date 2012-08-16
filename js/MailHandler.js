@@ -93,9 +93,26 @@ define(function(require, exports, module) {
 	// 得到默认Message对象
 	WelcomeMailHandler.getDefaultMessage = function(act) {
 		var msg = MailTemplate.WelcomeTemplate.clone();
+		var startDate = null;
+		var endDate = null;
+		var strActivityTime = '';
 		if(act) {
 			msg.title = msg.title.replace("%N", act.activity_name);
-			msg.content = msg.content.replace("%D", act.activity_date);
+
+			// 活动时间的格式处理
+			startDate = Date.CreateDateTime(act.activity_date);
+			endDate = Date.CreateDateTime(act.activity_date);
+			endDate.setHours(startDate.getHours() + 2);
+
+			strActivityTime = startDate.format("yyyy-MM-dd");
+			strActivityTime += "(";
+			strActivityTime += startDate.getWeekdayString();
+			strActivityTime += ") ";
+			strActivityTime += startDate.format("hh:mm");
+			strActivityTime += "-";
+			strActivityTime += endDate.format("hh:mm");
+
+			msg.content = msg.content.replace("%D", strActivityTime);
 			msg.content = msg.content.replace("%K", Util.getActivityKindTextById(act.activity_kind));
 			msg.to = [];
 			var arrIds = [];
