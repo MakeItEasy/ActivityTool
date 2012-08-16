@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "
+http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title> new document </title>
+        <script type="text/javascript" src="../jquery-easyui/jquery-1.4.4.min.js"></script>
+		<script type="text/javascript" src="../jquery-easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="../js/ActivityToolSystem.js"></script>
+<!--
+        <script type="text/javascript" src="../js/Constants.js"></script>
+ 
+        <script type="text/javascript" src="../js/DBUtil.js"></script>
+        <script type="text/javascript" src="../js/Util.js"></script>
+        <script type="text/javascript" src="../js/People.js"></script>
+        <script type="text/javascript" src="../js/Rechange.js"></script>
+ -->  
+		<script language="javascript">
+			onerror=handleErr;
+			
+			
+			// Error对象toString方法重写
+			Error.prototype.toString = function(){
+				var str = "Exception - { number:" + this.number;
+				str += ", description:" + this.description + " }";
+				return str;
+			}
+			
+			function BaseException(number, description) {
+//				BaseException.prototype.number = number;
+//				BaseException.prototype.description = description;
+				this.number = number;
+				this.description = description;
+			}
+			
+			BaseException.prototype = new Error(111, 'aaa');
+			var ex = new BaseException(12, 'errdfdf');
+			alert(ex.number);
+			
+			var e = new Error(222, 'bbb');
+			alert('e tostring :' + e.toString());
+			alert(e);
+			alert(e.number);
+			alert('e:' + e.constructor);
+			alert('ex base:' + ex.constructor);
+			
+			alert('typeof e:' + typeof e);
+			alert('typeof ex:' + typeof ex);
+						
+			
+			var txt=""
+			
+			function handleErr(msg,url,l)
+			{
+			txt="There was an error on this page.\n\n"
+			txt+="Error: " + msg + "\n"
+			txt+="URL: " + url + "\n"
+			txt+="Line: " + l + "\n\n"
+			txt+="Click OK to continue.\n\n"
+			alert(txt)
+			return true;
+			}
+			
+			function message()
+			{
+				// adddlert("Welcome guest!")
+//				throw new Error('errid', 'errdisstru');
+				throw new BaseException(12, 'errdfdf');
+				alert('after throw');
+			}
+		</script>
+        
+	</head>
+
+	<body>
+	    <input type="button" value="View message" onclick="message()" />
+    </body>
+</html>
