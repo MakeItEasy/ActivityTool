@@ -1,4 +1,29 @@
 ActivityTool
 ============
-
 The tool to manage the activity information.
+
+# Install
+
+1. 安装sqliteodbc.exe。
+下载地址: http://www.ch-werner.de/sqliteodbc/
+2. 得到env/JMail.dll文件，然后注册该组件。
+（该组件是用来发送邮件用的，如果不注册这个组件，那么发送邮件功能无法使用，其他功能正常。）
+注册方法：
+（1）将其复制到system32目录下
+（2）在MS－DOS下执行regsvr32 JMail.dll即可
+3.系统配置
+数据库路径的配置
+文件：js/DBUtil.js
+修改内容：dbPath : "e:\\01_moyan\\12_GitHubHome\\ActivityTool\\database\\ActivityTool.db",
+将以上内容中的路径修改为自己本地数据库的绝对路径。
+
+日志路径的配置
+文件：js/LoggerWrapper.js
+修改内容：logFilePath : 'e:\\01_moyan\\12_GitHubHome\\ActivityTool\\logs\\ActivityTool.log',
+将以上内容中的路径修改为自己本地数据库的绝对路径。
+
+安装完毕!
+
+注：如果希望以hta的形式运行，那么运行 bats/createHtaApp.bat，即可生成ActivityTool.hta文件，双击运行即可。
+
+Screenshot
