@@ -4,7 +4,7 @@
 
 	// The Util to process DB
 	var DBUtil = {
-		dbPath : "e:\\01_moyan\\00_moyan_SugarSync\\05_MyProject\\ActivityTool\\03_source\\database\\ActivityTool.db",
+		dbPath : "e:\\01_moyan\\12_GitHubHome\\ActivityTool\\database\\ActivityTool.db",
 		getConnection : getConnection,
 		executeSql : executeSql,
 		executeSqls : executeSqls,
