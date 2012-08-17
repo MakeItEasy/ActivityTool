@@ -1,5 +1,5 @@
 logs/
-database/
+database/ActivityTool.db
 
 test.html
 *.log
