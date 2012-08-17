@@ -32,43 +32,29 @@ define(function(require, exports, module) {
 
 	// 系统初始化button按下处理
 	function btnInitSystem_click(){
-		var peopleId = 0;
-		var money = 0;
-		var person = null;
-		var strMsg = '';
-		// 表单验证
-		var checkResult = Util.validateForm(document.forms['quicklyPayForm']);
-		if(checkResult) {
-			// 验证通过
-			peopleId = $('#people_id').val();
-			money = $('#money').val();
-			person = People.queryById(peopleId);
-			if(person != null)
-			{
-				if(person.deleteflag == Constants.deleteFlag.notDeleted)
-				{
-					Rechange.rechange(person, money);
-					// 充值成功处理
-					person = People.queryById(peopleId);
-					strMsg = Message.I_R_00_000_0003.replace('{0}', person.id);
-					strMsg = strMsg.replace('{1}', person.name);
-					strMsg = strMsg.replace('{2}', money);
-					strMsg = strMsg.replace('{3}', person.balance);
-					
-					ActivityToolSystem.Handler.HandleSuccessShow({title : Message.T_C_00_000_0005, msg : strMsg});
-					
-					$('#people_id').val('');
-					$('#money').val('');
+		
+		var initSystem = function(r) {
+			if(r) {
+				var sqls = [];
+				sqls.push("delete from t_rechange;");
+				sqls.push("delete from t_activity_people;");
+				sqls.push("delete from t_people;");
+				sqls.push("delete from t_activity;");
+				try {
+					DBUtil.executeSqls(sqls);
+					// 初始化成功处理
+					ActivityToolSystem.Handler.HandleSuccessShow({title : Message.T_C_00_000_0005, msg : Message.I_C_00_000_0008 });
 				}
-				else
+				catch (ex)
 				{
-					throw new Error(Constants.errorNumber.defaultNumber, 'E_P_00_000_0009');
+					LoggerWrapper.error(ex);
+					throw new Error(Constants.errorNumber.defaultNumber, 'E_C_00_000_0003');
 				}
-			} else {
-				throw new Error(Constants.errorNumber.defaultNumber, 'E_P_00_000_0010');
 			}
-			
 		}
+		
+		// 弹出确认框
+		$.messager.confirm(Message.T_C_00_000_0002, Message.W_C_00_000_0003, initSystem);
 	}
 
 	//////////////////////////////////////////////////////////
