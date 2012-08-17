@@ -30,6 +30,10 @@ http://www.w3.org/TR/html4/loose.dtd">
 		
 		/*邮件通知菜单部*/
 		.nav-main #m-a{ background:url(images/icon.gif) no-repeat 10px -230px;}
+		
+		/*系统工具菜单部*/
+		.nav-main #s-a{ background:url(images/icon.gif) no-repeat 10px -230px;}
+		.nav-main #s-b{ background:url(images/icon.gif) no-repeat 10px -255px;}
 
 	</style>
 </head>
@@ -54,9 +58,15 @@ http://www.w3.org/TR/html4/loose.dtd">
 				  <li><a href="#"><span id="a-b" class="submenu">新建活动</span></a></li>
 				</ul>
 			</div>
-			<div title="邮件通知" selected="true" style="overflow:auto;">
+			<div title="邮件通知" selected="false" style="overflow:auto;">
 				<ul class="nav-main">
 				  <li><a href="#"><span id="m-a" class="submenu">余额不足通知</span></a></li>
+				</ul>
+			</div>
+			<div title="系统工具" selected="false" style="overflow:auto;">
+				<ul class="nav-main">
+				  <li><a href="#"><span id="s-a" class="submenu">系统初始化</span></a></li>
+				  <li><a href="#"><span id="s-b" class="submenu">关于</span></a></li>
 				</ul>
 			</div>
 		</div>

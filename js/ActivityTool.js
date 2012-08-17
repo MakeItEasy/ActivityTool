@@ -44,6 +44,14 @@ define(function(require, exports, module) {
 				// 余额不足通知
 				strSrc = 'pages/mailBalanceRemind.html';
 				break;
+			case 's-a':
+				// 系统初始化
+				strSrc = 'pages/initSystem.html';
+				break;
+			case 's-b':
+				// 关于
+				strSrc = 'pages/about.html';
+				break;
 		}
 		$('#mainArea').attr('src', strSrc);
 	}
