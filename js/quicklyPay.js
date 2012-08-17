@@ -43,8 +43,8 @@ define(function(require, exports, module) {
 		var checkResult = Util.validateForm(document.forms['quicklyPayForm']);
 		if(checkResult) {
 			// 验证通过
-			peopleId = $('#people_id').val();
-			money = $('#money').val();
+			peopleId = $('#vali_people_id').val();
+			money = $('#vali_money').val();
 			person = People.queryById(peopleId);
 			if(person != null)
 			{
@@ -60,8 +60,8 @@ define(function(require, exports, module) {
 					
 					ActivityToolSystem.Handler.HandleSuccessShow({title : Message.T_C_00_000_0005, msg : strMsg});
 					
-					$('#people_id').val('');
-					$('#money').val('');
+					$('#vali_people_id').val('');
+					$('#vali_money').val('');
 				}
 				else
 				{
