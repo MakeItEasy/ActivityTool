@@ -320,7 +320,7 @@ define(function(require, exports, module) {
 			}
 
 			// 弹出确认框
-			$.messager.confirm(Message.T_C_00_000_0002, str, f);
+			$.messager.confirm(Message.T_C_00_000_0008, str, f);
 		}
 	}
 
