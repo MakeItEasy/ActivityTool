@@ -1,3 +1,3 @@
-echo > ../ActivityTool.hta
-cat ../ActivityTool.html > ../ActivityTool.hta
-cat HTA >> ../ActivityTool.hta
+echo > ..\ActivityTool.hta
+type ..\ActivityTool.html > ..\ActivityTool.hta
+type HTA >> ..\ActivityTool.hta
