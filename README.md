@@ -31,4 +31,3 @@ The tool to manage the activity information.
 注：如果希望以hta的形式运行，那么运行 bats/createHtaApp.bat，  
 即可生成ActivityTool.hta文件，双击生成的文件即可运行。
 
-## Screenshot
