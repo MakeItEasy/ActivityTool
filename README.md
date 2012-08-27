@@ -32,3 +32,11 @@ The tool to manage the activity information.
 即可生成ActivityTool.hta文件，双击生成的文件即可运行。
 
 ## Screenshot
+
+* 人员一览截图
+![人员一览](/screenshot/PeopleList.png)
+* 活动一览截图
+![活动一览](/screenshot/ActivityList.png)
+* 新建活动截图
+![新建活动](/screenshot/ActivityNew.png)
+
