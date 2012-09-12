@@ -29,7 +29,7 @@ The tool to manage the activity information.
  
 5. 系统配置(邮件相关配置)  
 文件：js/MailSender.js  
-修改内容：var MailSender = {
+修改内容：var MailSender = {  
 按照要求修改以上定义中的内容。主要是服务器地址，用户名，密码。  
 
 
