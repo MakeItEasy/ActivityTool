@@ -20,11 +20,18 @@ The tool to manage the activity information.
 文件：js/DBUtil.js  
 修改内容：dbPath : "e:\\01_moyan\\12_GitHubHome\\ActivityTool\\database\\ActivityTool.db",  
 将以上内容中的路径修改为自己本地数据库的绝对路径。  
+备注：由于下载的文件中，database文件的名字为ActivityTool_init.db，所以要注意把最后的_init删除掉。  
 
 4. 系统配置(日志路径的配置)  
 文件：js/LoggerWrapper.js  
 修改内容：logFilePath : 'e:\\01_moyan\\12_GitHubHome\\ActivityTool\\logs\\ActivityTool.log',  
 将以上内容中的路径修改为自己本地数据库的绝对路径。  
+ 
+5. 系统配置(邮件相关配置)  
+文件：js/MailSender.js  
+修改内容：var MailSender = {
+按照要求修改以上定义中的内容。主要是服务器地址，用户名，密码。  
+
 
 安装完毕!
 

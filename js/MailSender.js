@@ -22,7 +22,7 @@ define(function(require, exports, module) {
 		option : {
 			mailServer : 'mail.use.com.cn',
 			mailServerUserName : "dairugang",
-			mailServerPassWord : "19860420drg",
+			mailServerPassWord : "********",
 			fromName : 'administrator',
 			from : 'dairugang@use.com.cn'
 		}
